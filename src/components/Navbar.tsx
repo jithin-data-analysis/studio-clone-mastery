@@ -37,7 +37,7 @@ export const Navbar = () => {
             <Bell className="h-5 w-5" />
           </Button>
           
-          <Button variant="purple" className="hidden md:flex bg-stream hover:bg-stream-hover">
+          <Button variant="default" className="hidden md:flex bg-stream hover:bg-stream-hover">
             Log In
           </Button>
           

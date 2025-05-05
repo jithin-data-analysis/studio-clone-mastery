@@ -1,6 +1,7 @@
 
 import { Navbar } from "@/components/Navbar";
 import { StreamGrid } from "@/components/StreamGrid";
+import { StreamCard } from "@/components/StreamCard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search, SlidersHorizontal } from "lucide-react";
@@ -141,19 +142,7 @@ const Browse = () => {
           ))}
         </div>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-          {ALL_STREAMS.map((stream) => (
-            <StreamCard 
-              key={stream.id}
-              id={stream.id}
-              title={stream.title}
-              streamer={stream.streamer}
-              thumbnail={stream.thumbnail}
-              category={stream.category}
-              viewers={stream.viewers}
-            />
-          ))}
-        </div>
+        <StreamGrid title="Live Streams" streams={ALL_STREAMS} />
       </div>
     </div>
   );
