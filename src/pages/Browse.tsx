@@ -1,20 +1,11 @@
 
 import { Navbar } from "@/components/Navbar";
-import { FeaturedStream } from "@/components/FeaturedStream";
 import { StreamGrid } from "@/components/StreamGrid";
-import { CategoryCard } from "@/components/CategoryCard";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Search, SlidersHorizontal } from "lucide-react";
 
-const FEATURED_STREAM = {
-  id: "featured1",
-  title: "CHAMPIONSHIP FINALS! Team Alpha vs Team Omega",
-  streamer: "ProGamer",
-  thumbnailUrl: "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2070&auto=format&fit=crop",
-  category: "League of Legends",
-  viewers: 154823,
-  description: "Watch the championship finals where Team Alpha and Team Omega battle it out for the grand prize of $1 million. Who will be crowned the champion?"
-};
-
-const LIVE_STREAMS = [
+const ALL_STREAMS = [
   {
     id: "stream1",
     title: "Learning React while building a game!",
@@ -55,11 +46,8 @@ const LIVE_STREAMS = [
     category: "World of Warcraft",
     viewers: 7845,
   },
-];
-
-const RECOMMENDED_STREAMS = [
   {
-    id: "rec1",
+    id: "stream6",
     title: "Chill music stream - Lo-Fi Beats",
     streamer: "MusicMaestro",
     thumbnail: "https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?q=80&w=2070&auto=format&fit=crop",
@@ -67,7 +55,7 @@ const RECOMMENDED_STREAMS = [
     viewers: 12543,
   },
   {
-    id: "rec2",
+    id: "stream7",
     title: "Learning Japanese - Day 45",
     streamer: "LanguageLearner",
     thumbnail: "https://images.unsplash.com/photo-1528164344705-47542687000d?q=80&w=2069&auto=format&fit=crop",
@@ -75,7 +63,7 @@ const RECOMMENDED_STREAMS = [
     viewers: 532,
   },
   {
-    id: "rec3",
+    id: "stream8",
     title: "Professional Valorant Tournament",
     streamer: "ESportsCentral",
     thumbnail: "https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?q=80&w=2070&auto=format&fit=crop",
@@ -83,7 +71,7 @@ const RECOMMENDED_STREAMS = [
     viewers: 24321,
   },
   {
-    id: "rec4",
+    id: "stream9",
     title: "Cooking Challenge - Mystery Ingredients",
     streamer: "ChefMaster",
     thumbnail: "https://images.unsplash.com/photo-1556911261-6bd341186b2f?q=80&w=2070&auto=format&fit=crop",
@@ -91,88 +79,84 @@ const RECOMMENDED_STREAMS = [
     viewers: 4562,
   },
   {
-    id: "rec5",
+    id: "stream10",
     title: "Building a PC live - Viewer's Edition",
     streamer: "TechGuru",
     thumbnail: "https://images.unsplash.com/photo-1547082299-de196ea013d6?q=80&w=2070&auto=format&fit=crop",
     category: "Tech",
     viewers: 8745,
   },
-];
-
-const POPULAR_CATEGORIES = [
   {
-    id: "category1",
-    name: "Just Chatting",
-    image: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?q=80&w=2070&auto=format&fit=crop",
-    viewers: 345000,
+    id: "stream11",
+    title: "Championship Finals! Team Alpha vs Team Omega",
+    streamer: "ProGamer",
+    thumbnail: "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2070&auto=format&fit=crop",
+    category: "League of Legends",
+    viewers: 154823,
   },
   {
-    id: "category2",
-    name: "League of Legends",
-    image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2070&auto=format&fit=crop",
-    viewers: 230000,
-  },
-  {
-    id: "category3",
-    name: "Valorant",
-    image: "https://images.unsplash.com/photo-1614294148960-9aa740a3e4f3?q=80&w=2070&auto=format&fit=crop",
-    viewers: 185000,
-  },
-  {
-    id: "category4",
-    name: "Minecraft",
-    image: "https://images.unsplash.com/photo-1533665975635-d26ec811dd42?q=80&w=1974&auto=format&fit=crop",
-    viewers: 145000,
-  },
-  {
-    id: "category5",
-    name: "Fortnite",
-    image: "https://images.unsplash.com/photo-1589241062272-c0a000072437?q=80&w=2074&auto=format&fit=crop",
-    viewers: 125000,
-  },
-  {
-    id: "category6",
-    name: "Art",
-    image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=2071&auto=format&fit=crop",
-    viewers: 87000,
+    id: "stream12",
+    title: "Speedrunning World Record Attempts",
+    streamer: "SpeedKing",
+    thumbnail: "https://images.unsplash.com/photo-1552820728-8b83bb6b773f?q=80&w=2070&auto=format&fit=crop",
+    category: "Super Mario 64",
+    viewers: 9876,
   },
 ];
 
-const Index = () => {
+const Browse = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
+      
       <div className="container mx-auto px-4 py-6">
-        <section className="mb-6">
-          <FeaturedStream {...FEATURED_STREAM} />
-        </section>
-        
-        <section>
-          <StreamGrid title="Live Channels" streams={LIVE_STREAMS} />
-        </section>
-        
-        <section>
-          <h2 className="text-xl font-bold mb-4">Popular Categories</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            {POPULAR_CATEGORIES.map((category) => (
-              <CategoryCard 
-                key={category.id}
-                id={category.id}
-                name={category.name}
-                image={category.image}
-                viewers={category.viewers}
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+          <h1 className="text-2xl font-bold">Browse Streams</h1>
+          
+          <div className="flex gap-3 max-w-md w-full">
+            <div className="relative flex-1">
+              <Input 
+                placeholder="Search Streams" 
+                className="bg-stream-lighter border-none pl-10 pr-4 h-10"
               />
-            ))}
+              <Search className="absolute left-3 top-2.5 h-5 w-5 text-muted-foreground" />
+            </div>
+            
+            <Button variant="outline" size="icon" className="h-10 w-10">
+              <SlidersHorizontal className="h-5 w-5" />
+            </Button>
           </div>
-        </section>
+        </div>
         
-        <section>
-          <StreamGrid title="Recommended Channels" streams={RECOMMENDED_STREAMS} />
-        </section>
+        <div className="flex gap-4 mb-6 overflow-x-auto py-2">
+          {["All", "Games", "Music", "IRL", "Art", "Just Chatting", "Esports", "Creative", "Technology", "Sports"].map((filter) => (
+            <Button 
+              key={filter} 
+              variant={filter === "All" ? "default" : "outline"}
+              className={filter === "All" ? "bg-stream hover:bg-stream-hover" : ""}
+              size="sm"
+            >
+              {filter}
+            </Button>
+          ))}
+        </div>
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+          {ALL_STREAMS.map((stream) => (
+            <StreamCard 
+              key={stream.id}
+              id={stream.id}
+              title={stream.title}
+              streamer={stream.streamer}
+              thumbnail={stream.thumbnail}
+              category={stream.category}
+              viewers={stream.viewers}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
 };
 
-export default Index;
+export default Browse;
